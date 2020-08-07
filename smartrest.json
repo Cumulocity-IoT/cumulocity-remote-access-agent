@@ -1,0 +1,20 @@
+{
+  "name": "C8Y Python Agent",
+  "type": "c8y_SmartRest2Template",
+  "com_cumulocity_model_smartrest_csv_CsvSmartRestTemplate": {
+    "responseTemplates": [
+      {
+        "msgId": "da600",
+        "condition": "c8y_RemoteAccessConnect",
+        "base": "",
+        "name": "Cloud Remote Access Operation",
+        "pattern": [
+          "c8y_RemoteAccessConnect.hostname",
+          "c8y_RemoteAccessConnect.port",
+          "c8y_RemoteAccessConnect.connectionKey"
+        ]
+      }
+    ]
+  },
+  "__externalId": "remoteConnect"
+}
