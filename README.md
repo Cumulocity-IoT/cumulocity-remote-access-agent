@@ -12,7 +12,7 @@ The module 'DeviceProxy' can be re-used and easily embedded into your Python pro
 * Your user must have the permission to use the Cloud Remote Access Feature. There is a permission `Remote Access` which needs to be assigned to your user by your Administrator. 
 * If you don't see any Tab in Device Management `Remote Access` it is most likely because of one of the above mentioned bullet points.
 * To test it you need a local SSH Server e.g. from [Docker Hub](https://hub.docker.com/search?q=openssh&type=image) running and accessible by your C8Y Agent. Please note that if you run your Agent in another docker container that the IP configured in the UI is the host IP address. You can find it out resolving the dns `host.docker.internal` most likely it is `192.168.65.2`
-* This is not only limited to SSH Server but also should support VNC and Telnet as well (even it has never been tested :-))
+* This is not only limited to SSH Server but also supports VNC and Telnet. At least VNC has been successfully tested.
 
 # Run it
 * Install all dependencies by:
