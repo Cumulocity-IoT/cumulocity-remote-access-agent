@@ -36,6 +36,13 @@ Copy the device_proxy.py to your project and import it to your Module which hand
 from device_proxy import DeviceProxy, WebSocketFailureException
 ```
 
+For Cumulocity Version >= 10.7:
+Make sure you subscribe to the Static Template Topic and you handle the message with Id [530](https://cumulocity.com/guides/device-sdk/mqtt/#530)
+```sh
+subscribe(mqttClient, 's/ds',0)
+```
+
+For Cumulcity Version < 10.7:
 Make sure you subscribe to the Smart REST Template id
 Example:
 ```sh
