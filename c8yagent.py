@@ -13,6 +13,7 @@ password = '<password>'
 token = None
 
 remote_access_op_template = 'da600'
+remote_access_default_template = '530'
 fragment = 'c8y_RemoteAccessConnect'
 template_id = 'remoteConnect'
 
@@ -89,7 +90,7 @@ def on_message(client, userdata, message):
         logger.info("Received operation '{0}'".format(str(message.payload)))
         payload = message.payload.decode("utf-8")
         payload_array = payload.split(',')
-        if payload_array[0] == remote_access_op_template:
+        if payload_array[0] == remote_access_op_template or payload_array[0] == remote_access_default_template:
             set_executing(client, fragment)
             proxy_connect(payload_array)
     except Exception as ex:
