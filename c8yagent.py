@@ -1,7 +1,7 @@
 import logging
 from logging.handlers import RotatingFileHandler
 import paho.mqtt.client as mqtt
-from device_proxy import DeviceProxy, WebSocketFailureException
+from c8ydp.device_proxy import DeviceProxy, WebSocketFailureException
 import sys
 import time
 
