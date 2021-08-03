@@ -18,13 +18,13 @@
 from setuptools import setup
 
 setup(name='c8y-device-proxy',
-      version='1.0.0',
+      version='1.0.1',
       description='Cumulocity Device Proxy',
       author='Stefan Witschel',
       license='Apache v2',
       packages=['c8ydp'],
       install_requires = [
-        'certifi>=2021.5.30'
+        'certifi>=2021.5.30',
         'websocket_client>=1.1.0'
       ],
       zip_safe=False)
