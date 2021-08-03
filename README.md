@@ -31,9 +31,14 @@ Create a new Connection by `Add endpoint` and configure the required fields. Als
 
 
 # Embed Device Proxy Module
-Copy the device_proxy.py to your project and import it to your Module which handles Cumulocity Operations
+Add c8y-device-proxy to your requirements.txt and import it to your Module which handles Cumulocity Operations.
 ```sh
-from device_proxy import DeviceProxy, WebSocketFailureException
+pip install c8y-device-proxy
+```
+Alternatively copy the c8ydp package to your project.
+
+```sh
+from c8ydp.device_proxy import DeviceProxy, WebSocketFailureException
 ```
 
 For Cumulocity Version >= 10.7:
