@@ -188,8 +188,8 @@ class DeviceProxy:
     def _on_ws_error(self, _ws, error):
         self.logger.error(f'WebSocket Error received: {error}')
 
-    def _on_ws_close(self, _ws):
-        self.logger.info(f'WebSocket Connection closed!')
+    def _on_ws_close(self, _ws, close_status, close_reason):
+        self.logger.info(f'WebSocket Connection closed. Status: {close_status}, Reason: {close_reason}')
         self.stop()
 
     def _on_ws_open(self, _ws):
