@@ -18,7 +18,7 @@
 from setuptools import setup
 
 setup(name='c8y-device-proxy',
-      version='1.0.2',
+      version='1.0.3',
       description='Cumulocity Device Proxy',
       author='Stefan Witschel',
       license='Apache v2',
