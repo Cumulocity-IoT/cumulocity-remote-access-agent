@@ -232,7 +232,7 @@ class DeviceProxy:
         # See https://stackoverflow.com/questions/26980966/using-a-websocket-client-as-a-class-in-python
         web_socket.on_message = lambda ws, msg: self._on_ws_message(ws, msg)
         web_socket.on_error = lambda ws, error: self._on_ws_error(ws, error)
-        web_socket.on_close = lambda ws: self._on_ws_close(ws)
+        web_socket.on_close = lambda ws, status, reason: self._on_ws_close(ws, status, reason)
         web_socket.on_open = lambda ws: self._on_ws_open(ws)
         self.logger.info(f'Starting Web Socket Connection...')
         self._web_socket = web_socket
