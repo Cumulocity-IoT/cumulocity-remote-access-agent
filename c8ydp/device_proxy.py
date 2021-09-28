@@ -56,7 +56,10 @@ class DeviceProxy:
                  base_url: str,
                  tenantuser: str,
                  password: str,
-                 token: str):
+                 token: str,
+                 http_proxy_host: str,
+                 http_proxy_port: int,
+                 proxy_type: str):
         self.logger = logging.getLogger(__name__)
         self.tcp_host = tcp_host
         self.tcp_port = tcp_port
@@ -66,6 +69,9 @@ class DeviceProxy:
         self.password = password
         self.token = token
         self.buffer_size = 16384 if buffer_size is None else buffer_size
+        self.http_proxy_host = http_proxy_host
+        self.http_proxy_port = http_proxy_port
+        self.proxy_type = proxy_type
         self._close = False
         self._websocket_device_endpoint = '/service/remoteaccess/device/'
         self._web_socket = None
@@ -237,7 +243,9 @@ class DeviceProxy:
         self.logger.info(f'Starting Web Socket Connection...')
         self._web_socket = web_socket
         wst = threading.Thread(target=self._web_socket.run_forever, kwargs={
-            'ping_interval': 10, 'ping_timeout': 7, 'sslopt': {'ca_certs': certifi.where()}})
+            'ping_interval': 10, 'ping_timeout': 7, 'sslopt': {'ca_certs': certifi.where()},
+            'http_proxy_host': self.http_proxy_host, 'http_proxy_port': self.http_proxy_port,
+            'proxy_type': self.proxy_type})
         wst.daemon = True
         wst.name = f'WSTunnelThread-{self.connection_key[:8]}'
         wst.start()
