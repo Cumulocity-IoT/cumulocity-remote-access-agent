@@ -9,6 +9,7 @@ device_id = "1234567890"
 baseurl = "mqtt.cumulocity.com"
 tenant = '<tenantId>'
 user = '<user>'
+tenantuser = tenant + '/' + user
 password = '<password>'
 token = None
 
@@ -78,9 +79,8 @@ def proxy_connect(message):
         if token is None and tenant is None and user is None and password is None:
             raise WebSocketFailureException(
                 'OAuth Token or tenantuser and password must be provided!')
-         # Not sure which buffer size is good, starting with 16 KB (16 x 1024)
         device_proxy = DeviceProxy(
-            tcp_host, tcp_port, tcp_buffer_size, connection_key, baseurl, tenant, user, password, token)
+            tcp_host, tcp_port, tcp_buffer_size, connection_key, baseurl, tenantuser, password, token)
         device_proxy.connect()
         set_success(mqttClient, fragment)
 

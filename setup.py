@@ -24,7 +24,8 @@ setup(name='c8y-device-proxy',
       license='Apache v2',
       packages=['c8ydp'],
       install_requires = [
+        'paho-mqtt>=1.5.1',
         'certifi>=2021.5.30',
-        'websocket_client>=1.1.0'
+        'websocket_client>=1.2.1'
       ],
       zip_safe=False)
