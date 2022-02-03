@@ -6,8 +6,16 @@ The module 'DeviceProxy' can be re-used and easily embedded into your Python pro
 # Prerequisites
 
 * Install Python 2 or Python3 if not already installed. This module has been tested with Python3.
-* With Cumulocity > 10.7 this step is not needed anymore. For all versions below please perform the following step:
-    * Import the [Smart REST Template](smartrest.json) to Cumulocity which contains a Response Template for Remote Access Connect Operation.
+---
+**IMPORTANT**
+
+If you're running Cumulocity 10.7+ please continue with the next bullet point. 
+
+The following step should only performed for Cumulocity Versions < 10.7. Otherwise this will lead to issues. 
+* Import the [Smart REST Template](smartrest.json) to Cumulocity which contains a Response Template for Remote Access Connect Operation.
+
+---
+
 * Change the [c8yagnet.py](c8yagent.py) header to your C8Y Credentials (device_id, baseurl, tenant, user and password must be set)
 * Your Tenant must have subscribed to the feature `cloud-remote-access`. If you don't see that in your subscribed applications ask you Administrator to get it subscribed.
 * Your user must have the permission to use the Cloud Remote Access Feature. There is a permission `Remote Access` which needs to be assigned to your user by your Administrator. 
