@@ -79,12 +79,16 @@ def proxy_connect(message):
         if token is None and tenant is None and user is None and password is None:
             raise WebSocketFailureException(
                 'OAuth Token or tenantuser and password must be provided!')
+        
         device_proxy = DeviceProxy(
-            tcp_host, tcp_port, tcp_buffer_size, connection_key, baseurl, tenantuser, password, token)
+            tcp_host, tcp_port, tcp_buffer_size, connection_key, baseurl, tenantuser, password, token, on_close_handler)
         device_proxy.connect()
         set_success(mqttClient, fragment)
 
-
+def on_close_handler(close_status, close_reason):
+    logger.info(f'Device Proxy has been closed with status {close_status}, reason {close_reason}')
+    stop()
+    
 def on_message(client, userdata, message):
     try:
         logger.info("Received operation '{0}'".format(str(message.payload)))
