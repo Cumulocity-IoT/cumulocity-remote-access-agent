@@ -57,6 +57,7 @@ class DeviceProxy:
                  tenantuser: str,
                  password: str,
                  token: str,
+                 on_close_handler,
                  **kwargs):
         self.logger = logging.getLogger(__name__)
         self.tcp_host = tcp_host
@@ -66,10 +67,12 @@ class DeviceProxy:
         self.tenantuser = tenantuser
         self.password = password
         self.token = token
+        self.on_close_handler = on_close_handler
         self.buffer_size = 16384 if buffer_size is None else buffer_size
         self.http_proxy_host = kwargs.get('http_proxy_host')
         self.http_proxy_port = kwargs.get('http_proxy_port')
         self.proxy_type = kwargs.get('proxy_type')
+        
         self._close = False
         self._websocket_device_endpoint = '/service/remoteaccess/device/'
         self._web_socket = None
@@ -195,6 +198,8 @@ class DeviceProxy:
     def _on_ws_close(self, _ws, close_status, close_reason):
         self.logger.info(f'WebSocket Connection closed. Status: {close_status}, Reason: {close_reason}')
         self.stop()
+        if self.on_close_handler:
+            self.on_close_handler(close_status, close_reason)
 
     def _on_ws_open(self, _ws):
         self.logger.info(f'WebSocket Connection opened!')

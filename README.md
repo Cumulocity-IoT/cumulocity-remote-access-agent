@@ -57,6 +57,18 @@ On received and valid Operation initialize the DeviceProxy module with the requi
 
 Run the function `DeviceProxy.connect()`.
 
+For getting informed that the Web Socket Connection has been terminated add a close handler function in the constructor with 2 arguments for 'close_status' and 'close_reason'
+```python
+def on_close_handler(close_status, close_reason):
+    logger.info(f'Device Proxy has been closed with status {close_status}, reason {close_reason}')
+```
+...
+```python
+device_proxy = DeviceProxy(tcp_host, tcp_port, tcp_buffer_size, connection_key, baseurl, tenantuser, password, token, on_close_handler)
+```
+
+
+
 # Troubleshooting
 * Check the status of the Operation in `Control` Tab and the failed Operations with the failure reason.
 * Increase the Log Level of the Agent and Debug to the DeviceProxy Module to check what's going on.
