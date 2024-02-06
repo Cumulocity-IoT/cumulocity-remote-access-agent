@@ -24,7 +24,7 @@ jobs:
         PIP_NO_CACHE_DIR: '1'
       run: |
         pip install --upgrade pip
-        pip install -r requirements.txt -r requirements-dev.txt
+        pip install -r requirements.txt
         pip install build
     - name: Build
       run: python -m build
